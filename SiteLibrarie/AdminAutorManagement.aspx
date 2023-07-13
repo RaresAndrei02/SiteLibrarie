@@ -1,5 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminAutorManagement.aspx.cs" Inherits="SiteLibrarie.imgs.imgs.AdminAutorManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+      
+          //$(document).ready(function () {
+              //$('.table').DataTable();
+         // });
+      
+          $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+          //$('.table1').DataTable();
+      });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -38,7 +52,7 @@
                                 <label>ID Autor</label>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="ID"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="ID_Autor" runat="server" placeholder="ID"></asp:TextBox>
                                         <asp:Button class="btn btn-primary" ID="Button1" runat="server" Text="Go" OnClick="Button1_Click" />
                                     </div>
                                 </div>
@@ -47,7 +61,7 @@
                             <div class="col-md-8">
                                 <label>Nume autor</label>
                                 <div class="form-group">
-                                    <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Nume autor"></asp:TextBox>
+                                    <asp:TextBox CssClass="form-control" ID="Nume_Autor" runat="server" placeholder="Nume autor"></asp:TextBox>
 
                                 </div>
                             </div>
@@ -98,7 +112,13 @@
 
                         <div class="row">
                             <div class="col">
-                                <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RoBooksConnectionString2 %>" ProviderName="<%$ ConnectionStrings:RoBooksConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [Autori]"></asp:SqlDataSource>
+                                <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Autor" DataSourceID="SqlDataSource1">
+                                    <Columns>
+                                        <asp:BoundField DataField="ID_Autor" HeaderText="ID_Autor" ReadOnly="True" SortExpression="ID_Autor" />
+                                        <asp:BoundField DataField="Nume_Autor" HeaderText="Nume_Autor" SortExpression="Nume_Autor" />
+                                    </Columns>
+                                </asp:GridView>
                             </div>
                         </div>
 

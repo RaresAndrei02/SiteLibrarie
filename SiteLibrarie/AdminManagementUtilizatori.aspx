@@ -131,7 +131,13 @@
                   </div>
                   <div class="row">
                      <div class="col">
-                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ProviderName="<%$ ConnectionStrings:RoBooksConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [Autori]"></asp:SqlDataSource>
+                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Autor" DataSourceID="SqlDataSource1">
+                            <Columns>
+                                <asp:BoundField DataField="ID_Autor" HeaderText="ID_Autor" ReadOnly="True" SortExpression="ID_Autor" />
+                                <asp:BoundField DataField="Nume_Autor" HeaderText="Nume_Autor" SortExpression="Nume_Autor" />
+                            </Columns>
+                         </asp:GridView>
                      </div>
                   </div>
                </div>
